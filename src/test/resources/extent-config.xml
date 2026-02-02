@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+    <configuration>
+        <!-- Report Theme: STANDARD or DARK -->
+        <theme>STANDARD</theme>
+        
+        <!-- Document Encoding: UTF-8, UTF-16 -->
+        <encoding>UTF-8</encoding>
+        
+        <!-- Protocol for script and stylesheets: http or https -->
+        <protocol>https</protocol>
+        
+        <!-- Title of the report -->
+        <documentTitle>DemoBlaze Test Automation Report</documentTitle>
+        
+        <!-- Name of the report -->
+        <reportName>DemoBlaze Selenium Cucumber BDD Test Report</reportName>
+        
+        <!-- Timestamp format -->
+        <timeStampFormat>MMM dd, yyyy HH:mm:ss</timeStampFormat>
+        
+        <!-- Enable Base64 screenshot embedding -->
+        <enableBase64Screenshots>true</enableBase64Screenshots>
+        
+        <!-- Screenshot relative path -->
+        <screenshotRelativePath>../screenshots/</screenshotRelativePath>
+        
+        <!-- CSS for customization -->
+        <css>
+            <![CDATA[
+                .test-name { font-weight: bold; }
+                .category-name { color: #1976d2; }
+                .step-details img { max-width: 100%; height: auto; border: 1px solid #ddd; margin: 10px 0; }
+                .screenshot-container { margin: 15px 0; padding: 10px; background: #f9f9f9; border-radius: 5px; }
+            ]]>
+        </css>
+        
+        <!-- JavaScript for customization -->
+        <js>
+            <![CDATA[
+                // Custom JavaScript if needed
+            ]]>
+        </js>
+    </configuration>
+</extentreports>

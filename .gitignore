@@ -1,0 +1,53 @@
+# Java/Maven build artifacts
+/target/
+
+# Compiled class files
+*.class
+
+# Logs
+*.log
+logs/
+log/
+
+# IDE specific files
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+# Eclipse
+.project
+.classpath
+.settings/
+# VS Code
+.vscode/
+.slingshot/
+
+# Build outputs (generic)
+/bin/
+/out/
+/build/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Test outputs and reports
+/test-output/
+/cucumber-reports/
+/reports/
+
+# Coverage
+jacoco*.exec
+/coverage/
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.*
