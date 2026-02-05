@@ -1,0 +1,359 @@
+{
+  "info": {
+    "_postman_id": "6b97e69d-f632-4737-a9d7-d7d56818bf12",
+    "name": "DemoBlaze API Collection",
+    "description": "API tests for DemoBlaze application covering Login and Signup endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "7964491"
+  },
+  "item": [
+    {
+      "name": "Login API",
+      "item": [
+        {
+          "name": "Successful Login - Returns Auth Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"jyotiuser123\",\n    \"password\": \"Password@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Login with valid credentials to receive an authentication token"
+          },
+          "response": []
+        },
+        {
+          "name": "Login - Check Endpoint (Alternative)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"jyotiuser123\",\n    \"password\": \"Password@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/check",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "check"
+              ]
+            },
+            "description": "Login using /check endpoint with valid credentials"
+          },
+          "response": []
+        },
+        {
+          "name": "Login with Invalid Credentials",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains error message\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('errorMessage');",
+                  "    pm.expect(jsonData.errorMessage).to.eql('Wrong password.');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"invalid_user\",\n    \"password\": \"bad_pass\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Attempt login with invalid credentials to verify error handling"
+          },
+          "response": []
+        }
+      ],
+      "description": "API tests for DemoBlaze login functionality"
+    },
+    {
+      "name": "Signup API",
+      "item": [
+        {
+          "name": "Successful Signup with Valid Credentials",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Signup successful message\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('errorMessage');",
+                  "    pm.expect(jsonData.errorMessage).to.eql('Sign up successful.');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"testuser_456\",\n    \"password\": \"SecurePass1!\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/signup",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "signup"
+              ]
+            },
+            "description": "Create a new user account with valid credentials"
+          },
+          "response": []
+        },
+        {
+          "name": "Signup with Existing Username",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"User already exists error\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('errorMessage');",
+                  "    pm.expect(jsonData.errorMessage).to.eql('This user already exist.');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"jyotiuser123\",\n    \"password\": \"Password@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/signup",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "signup"
+              ]
+            },
+            "description": "Attempt to signup with an existing username to verify error handling"
+          },
+          "response": []
+        },
+        {
+          "name": "Signup with Empty Username",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 500\", function () {",
+                  "    pm.response.to.have.status(500);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"\",\n    \"password\": \"Password@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/signup",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "signup"
+              ]
+            },
+            "description": "Attempt signup with empty username field"
+          },
+          "response": []
+        },
+        {
+          "name": "Signup with Empty Password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"newuser789\",\n    \"password\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/signup",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "signup"
+              ]
+            },
+            "description": "Attempt signup with empty password field"
+          },
+          "response": []
+        }
+      ],
+      "description": "API tests for DemoBlaze signup functionality"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.demoblaze.com",
+      "type": "string"
+    }
+  ]
+}
